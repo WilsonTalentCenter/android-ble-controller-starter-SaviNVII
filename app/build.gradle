@@ -42,6 +42,9 @@ android {
         targetCompatibility JavaVersion.VERSION_17
     }
     namespace 'com.punchthrough.blestarterappandroid'
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_17
+    }
 }
 
 configurations {
