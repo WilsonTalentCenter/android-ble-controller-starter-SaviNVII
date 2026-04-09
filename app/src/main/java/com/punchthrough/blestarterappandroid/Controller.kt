@@ -10,6 +10,8 @@ import com.punchthrough.blestarterappandroid.R
 import com.punchthrough.blestarterappandroid.ble.ConnectionManager
 import timber.log.Timber
 import java.util.UUID
+import kotlin.math.cos
+import kotlin.math.sin
 
 class Controller : AppCompatActivity() {
 
@@ -27,7 +29,19 @@ class Controller : AppCompatActivity() {
 
         // 3. Link your UI Buttons (ensure these IDs match your XML)
        // val btnLedOn = findViewById<Button>(R.id.button_led_on)
-        val btnMoveUp = findViewById<Button>(R.id.buttonMoveUp)
+        val joystick = findViewById<JoystickView>(R.id.joystickView)
+        joystick.onMoveListener = { angle, strength ->
+            sendJoystickPosition(angle, strength)
+        }
+    }
+
+    private fun sendJoystickPosition(angle: Int, strength: Int) {
+        val rad = Math.toRadians(angle.toDouble())
+        val nx = cos(rad) * strength / 100.0
+        val ny = -sin(rad) * strength / 100.0
+        val bx = ((nx + 1.0) * 127.5).toInt().coerceIn(0, 255)
+        val by = ((ny + 1.0) * 127.5).toInt().coerceIn(0, 255)
+        sendToArduino("J,$bx,$by\n")
     }
 
     private fun sendToArduino(command: String) {
