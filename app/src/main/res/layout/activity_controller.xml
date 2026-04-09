@@ -10,12 +10,65 @@
     >
 
     <Button
-        android:id="@+id/button_led_on"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="on"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/buttonMoveUp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="352dp"
+        android:text="↑"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/textViewMovement"
+        android:layout_width="144dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="304dp"
+        android:text="Movement"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <Button
+        android:id="@+id/buttonMoveLeft"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="400dp"
+        android:rotation="270"
+        android:text="↑"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <Button
+        android:id="@+id/buttonMoveDown"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="448dp"
+        android:rotation="180"
+        android:text="↑"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <Button
+        android:id="@+id/buttonMoveRight"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="168dp"
+        android:layout_marginTop="400dp"
+        android:rotation="90"
+        android:text="↑"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />

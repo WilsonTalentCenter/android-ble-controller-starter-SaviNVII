@@ -27,22 +27,7 @@ class Controller : AppCompatActivity() {
 
         // 3. Link your UI Buttons (ensure these IDs match your XML)
        // val btnLedOn = findViewById<Button>(R.id.button_led_on)
-
-
-        val btnControl = findViewById<Button>(R.id.button_led_on)
-        btnControl.setOnTouchListener { view, event ->
-            when (event.action) {
-                MotionEvent.ACTION_DOWN -> {
-                    sendToArduino("1")
-                    true
-                }
-                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
-                    sendToArduino("0")
-                    true
-                }
-                else -> false
-            }
-        }
+        val btnMoveUp = findViewById<Button>(R.id.buttonMoveUp)
     }
 
     private fun sendToArduino(command: String) {
