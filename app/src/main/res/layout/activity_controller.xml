@@ -34,6 +34,32 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
+    <TextView
+        android:id="@+id/textViewBody"
+        android:layout_width="144dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="872dp"
+        android:layout_marginTop="216dp"
+        android:text="Body Rotation"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/textViewShield"
+        android:layout_width="144dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="872dp"
+        android:layout_marginTop="428dp"
+        android:text="Shield Rotation"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
     <Button
         android:id="@+id/buttonMoveLeft"
         android:layout_width="50dp"
@@ -41,6 +67,58 @@
         android:layout_marginStart="64dp"
         android:layout_marginTop="400dp"
         android:rotation="270"
+        android:text="↑"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <Button
+        android:id="@+id/buttonRotateBodyCounterClockwise"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="884dp"
+        android:layout_marginTop="264dp"
+        android:rotation="270"
+        android:text="↑"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <Button
+        android:id="@+id/buttonRotateShieldCounterClockwise"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="884dp"
+        android:layout_marginTop="476dp"
+        android:rotation="270"
+        android:text="↑"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <Button
+        android:id="@+id/buttonRotateShieldClockwise"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="956dp"
+        android:layout_marginTop="476dp"
+        android:rotation="90"
+        android:text="↑"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <Button
+        android:id="@+id/buttonRotateBodyClockwise"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="956dp"
+        android:layout_marginTop="264dp"
+        android:rotation="90"
         android:text="↑"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
