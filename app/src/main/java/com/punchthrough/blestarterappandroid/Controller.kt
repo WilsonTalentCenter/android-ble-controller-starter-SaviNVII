@@ -33,6 +33,62 @@ class Controller : AppCompatActivity() {
         joystick.onMoveListener = { angle, strength ->
             sendJoystickPosition(angle, strength)
         }
+        val btnBodyClockwise = findViewById<Button>(R.id.buttonRotateBodyClockwise)
+        btnBodyClockwise.setOnTouchListener { view, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    sendToArduino("B,CW\n")
+                    true
+                }
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                    sendToArduino("B,0\n")
+                    true
+                }
+                else -> false
+            }
+        }
+        val btnBodyCounterClockwise = findViewById<Button>(R.id.buttonRotateBodyCounterClockwise)
+        btnBodyCounterClockwise.setOnTouchListener { view, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    sendToArduino("B,CCW\n")
+                    true
+                }
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                    sendToArduino("B,0\n")
+                    true
+                }
+                else -> false
+            }
+        }
+        val btnShieldClockwise = findViewById<Button>(R.id.buttonRotateShieldClockwise)
+        btnShieldClockwise.setOnTouchListener { view, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    sendToArduino("S,CW\n")
+                    true
+                }
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                    sendToArduino("S,0\n")
+                    true
+                }
+                else -> false
+            }
+        }
+        val btnShieldCounterClockwise = findViewById<Button>(R.id.buttonRotateShieldCounterClockwise)
+        btnShieldCounterClockwise.setOnTouchListener { view, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    sendToArduino("S,CCW\n")
+                    true
+                }
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                    sendToArduino("S,0\n")
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     private fun sendJoystickPosition(angle: Int, strength: Int) {
