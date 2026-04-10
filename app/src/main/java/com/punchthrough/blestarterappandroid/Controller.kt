@@ -95,8 +95,11 @@ class Controller : AppCompatActivity() {
         val rad = Math.toRadians(angle.toDouble())
         val nx = cos(rad) * strength / 100.0
         val ny = -sin(rad) * strength / 100.0
-        val bx = ((nx + 1.0) * 127.5).toInt().coerceIn(0, 255)
-        val by = ((ny + 1.0) * 127.5).toInt().coerceIn(0, 255)
+        var bx = ((nx + 1.0) * 127.5).toInt().coerceIn(0, 255)
+        var by = ((ny + 1.0) * 127.5).toInt().coerceIn(0, 255)
+        bx -= 127
+        by -= 127
+        by *= -1
         sendToArduino("J,$bx,$by\n")
     }
 
