@@ -35,17 +35,15 @@ void setup() {
 
 void loop() {
 
-
   if (stringComplete) {
-     Serial.println("result:"+ inputString); //this should stay as Serial because it prints to debug console
+     Serial.println(inputString); //this should stay as Serial because it prints to debug console
     if(inputString=="B,CW\n"){
-     delayAmount = 500;
+      Serial.println("Clockwise");
     }
     else if(inputString=="B,CCW\n"){
-     delayAmount = 100;
+      Serial.println("CounterClockwise");
     }
     else{
-      delayAmount = 3000;
     }
     // clear the string:
     inputString = "";
@@ -53,10 +51,6 @@ void loop() {
     
    
   }
-    digitalWrite(LED_BUILTIN, HIGH);  // change state of the LED by setting the pin to the HIGH voltage level
-    delay(delayAmount);                      // wait for a second
-    digitalWrite(LED_BUILTIN, LOW);   // change state of the LED by setting the pin to the LOW voltage level
-    delay(1000); 
 }
 
 /*
@@ -64,15 +58,11 @@ void loop() {
   routine is run between each time loop() runs, so using delay inside loop can
   delay response. Multiple bytes of data may be available.
 */
-void serialEvent() {
-
+void serialEvent1() {
   while (Serial1.available()) {
     // get the new byte:
     char inChar = (char)Serial1.read();
-    // add it to the inputString:
     inputString += inChar;
-    // if the incoming character is a newline, set a flag so the main loop can
-    // do something about it:
     if (inChar == '\n') {
       stringComplete = true;
     }
