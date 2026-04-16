@@ -21,6 +21,23 @@
 String inputString = "";      // a String to hold incoming data
 bool stringComplete = false;  // whether the string is complete
 int delayAmount = 0;
+//pwm - 2-13  - enable
+//regular 22-53 for in1/in2
+const int LEFT_IN_1 = 22;
+const int LEFT_IN_2 = 23;
+const int LEFT_ENABLE = 2; // speed
+
+const int RIGHT_IN_1 = 32;
+const int RIGHT_IN_2 = 33;
+const int RIGHT_ENABLE = 3; // speed
+
+const int FRONT_IN_1 = 42;
+const int FRONT_IN_2 = 43;
+const int FRONT_ENABLE = 4; // speed
+
+const int BACK_IN_1 = 52;
+const int BACK_IN_2 = 53;
+const int BACK_ENABLE = 5; // speed
 
 void setup() {
   // initialize serial:
@@ -39,6 +56,8 @@ void loop() {
      Serial.println(inputString); //this should stay as Serial because it prints to debug console
     if(inputString=="B,CW\n"){
       Serial.println("Clockwise");
+          digitalWrite(ledPin, HIGH);
+           analogWrite(thisPin, brightness);
     }
     else if(inputString=="B,CCW\n"){
       Serial.println("CounterClockwise");
