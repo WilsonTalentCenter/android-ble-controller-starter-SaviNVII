@@ -45,8 +45,37 @@ void setup() {
   Serial1.begin(9600);
   // reserve 200 bytes for the inputString:
   inputString.reserve(200);
-  pinMode(LED_BUILTIN, OUTPUT);
-  digitalWrite(LED_BUILTIN, LOW);   // change state of the LED by setting the pin to the LOW voltage level
+  pinMode(LEFT_IN_1, OUTPUT);
+  pinMode(LEFT_IN_2, OUTPUT);
+  pinMode(LEFT_ENABLE, OUTPUT);
+
+  pinMode(RIGHT_IN_1, OUTPUT);
+  pinMode(RIGHT_IN_2, OUTPUT);
+  pinMode(RIGHT_ENABLE, OUTPUT);
+
+  pinMode(FRONT_IN_1, OUTPUT);
+  pinMode(FRONT_IN_2, OUTPUT);
+  pinMode(FRONT_ENABLE, OUTPUT);
+
+  pinMode(BACK_IN_1, OUTPUT);
+  pinMode(BACK_IN_2, OUTPUT);
+  pinMode(BACK_ENABLE, OUTPUT);
+
+  digitalWrite(LEFT_IN_1, LOW);  
+  digitalWrite(LEFT_IN_2, LOW);  
+  analogWrite(LEFT_ENABLE, 0); //speed is 0-255  
+
+  digitalWrite(RIGHT_IN_1, LOW);  
+  digitalWrite(RIGHT_IN_2, LOW);  
+  analogWrite(RIGHT_ENABLE, 0); //speed is 0-255
+
+  digitalWrite(FRONT_IN_1, LOW);  
+  digitalWrite(FRONT_IN_2, LOW);  
+  analogWrite(FRONT_ENABLE, 0); //speed is 0-255
+
+  digitalWrite(BACK_IN_1, LOW);  
+  digitalWrite(BACK_IN_2, LOW);  
+  analogWrite(BACK_ENABLE, 0); //speed is 0-255   
   
 }
 
@@ -56,8 +85,6 @@ void loop() {
      Serial.println(inputString); //this should stay as Serial because it prints to debug console
     if(inputString=="B,CW\n"){
       Serial.println("Clockwise");
-          digitalWrite(ledPin, HIGH);
-           analogWrite(thisPin, brightness);
     }
     else if(inputString=="B,CCW\n"){
       Serial.println("CounterClockwise");
