@@ -61,6 +61,10 @@ void setup() {
   pinMode(BACK_IN_2, OUTPUT);
   pinMode(BACK_ENABLE, OUTPUT);
 
+  pinMode(51, OUTPUT);
+  
+  digitalWrite(51, HIGH);
+
   digitalWrite(LEFT_IN_1, LOW);  
   digitalWrite(LEFT_IN_2, LOW);  
   analogWrite(LEFT_ENABLE, 0); //speed is 0-255  
