@@ -89,13 +89,65 @@ void loop() {
     else if(inputString=="B,CCW\n"){
       Serial.println("CounterClockwise");
     }
-    else{
+    else if(input.startsWIth("J")) {
+      String data = input.substring(2);
+      
+      // Find the comma separating bx and by
+      int commaIndex = data.indexOf(',');
+      
+      if (commaIndex != -1) {
+        String bxStr = data.substring(0, commaIndex);
+        String byStr = data.substring(commaIndex + 1);
+        
+        int bx = bxStr.toInt();
+        int by = byStr.toInt();
+        
+        if(bx>0){
+          digitalWrite(FRONT_IN_1,HIGH);
+          digitalWrite(FRONT_IN_2,LOW);
+          analogWrite(FRONT_ENABLE, abs(bx)*2-1);
+
+          digitalWrite(BACK_IN_1,HIGH);
+          digitalWrite(BACK_IN_2,LOW);
+          analogWrite(BACK_ENABLE, abs(bx)*2-1);
+        }else if(bx<0){
+          digitalWrite(FRONT_IN_1,LOW);
+          digitalWrite(FRONT_IN_2,HIGH);
+          analogWrite(FRONT_ENABLE, abs(bx)*2-1);
+
+          digitalWrite(BACK_IN_1,LOW);
+          digitalWrite(BACK_IN_2,HIGH);
+          analogWrite(BACK_ENABLE, abs(bx)*2-1);
+        }
+
+        if(by>0){
+          digitalWrite(LEFT_IN_1,HIGH);
+          digitalWrite(LEFT_IN_2,LOW);
+          analogWrite(LEFT_ENABLE, abs(by)*2-1);
+
+          digitalWrite(RIGHT_IN_1,HIGH);
+          digitalWrite(RIGHT_IN_2,LOW);
+          analogWrite(RIGHT_ENABLE, abs(by)*2-1);
+        }else if(by<0){
+          digitalWrite(LEFT_IN_1,LOW);
+          digitalWrite(LEFT_IN_2,HIGH);
+          analogWrite(LEFT_ENABLE, abs(by)*2-1);
+
+          digitalWrite(RIGHT_IN_1,LOW);
+          digitalWrite(RIGHT_IN_2,HIGH);
+          analogWrite(RIGHT_ENABLE, abs(by)*2-1);
+        }
+
+        Serial.print("bx: ");
+        Serial.print(bx);
+        Serial.print(", by: ");
+        Serial.println(by);
+      }
+
     }
     // clear the string:
     inputString = "";
     stringComplete = false;
-    
-   
   }
 }
 
