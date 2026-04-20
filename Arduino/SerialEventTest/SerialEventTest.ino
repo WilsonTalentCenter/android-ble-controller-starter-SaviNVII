@@ -28,7 +28,7 @@ const int LEFT_IN_2 = 23;
 const int LEFT_ENABLE = 2; // speed
 
 const int RIGHT_IN_1 = 32;
-const int RIGHT_IN_2 = 33;
+const int RIGHT_IN_2 = 35;
 const int RIGHT_ENABLE = 3; // speed
 
 const int FRONT_IN_1 = 42;
@@ -93,8 +93,8 @@ void loop() {
     else if(inputString=="B,CCW\n"){
       Serial.println("CounterClockwise");
     }
-    else if(input.startsWIth("J")) {
-      String data = input.substring(2);
+    else if(inputString.startsWith("J")) {
+      String data = inputString.substring(2);
       
       // Find the comma separating bx and by
       int commaIndex = data.indexOf(',');
@@ -105,6 +105,7 @@ void loop() {
         
         int bx = bxStr.toInt();
         int by = byStr.toInt();
+        Serial.println(bx + " " + by);
         
         if(bx>0){
           digitalWrite(FRONT_IN_1,HIGH);
@@ -142,6 +143,26 @@ void loop() {
           analogWrite(RIGHT_ENABLE, abs(by)*2-1);
         }
 
+        if(bx==0){
+          digitalWrite(FRONT_IN_1,LOW);
+          digitalWrite(FRONT_IN_2,LOW);
+          analogWrite(FRONT_ENABLE, 0);
+
+          digitalWrite(BACK_IN_1,LOW);
+          digitalWrite(BACK_IN_2,LOW);
+          analogWrite(BACK_ENABLE, 0);
+        }
+
+        if(by==0){
+          digitalWrite(LEFT_IN_1,LOW);
+          digitalWrite(LEFT_IN_2,LOW);
+          analogWrite(LEFT_ENABLE, 0);
+
+          digitalWrite(RIGHT_IN_1,LOW);
+          digitalWrite(RIGHT_IN_2,LOW);
+          analogWrite(RIGHT_ENABLE, 0);
+        }
+
         Serial.print("bx: ");
         Serial.print(bx);
         Serial.print(", by: ");
@@ -161,6 +182,7 @@ void loop() {
   delay response. Multiple bytes of data may be available.
 */
 void serialEvent1() {
+  Serial.println("serialEvent1");
   while (Serial1.available()) {
     // get the new byte:
     char inChar = (char)Serial1.read();

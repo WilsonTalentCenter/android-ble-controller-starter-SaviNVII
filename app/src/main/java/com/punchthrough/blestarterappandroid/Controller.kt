@@ -33,6 +33,7 @@ class Controller : AppCompatActivity() {
         joystick.onMoveListener = { angle, strength ->
             sendJoystickPosition(angle, strength)
         }
+
         val btnBodyClockwise = findViewById<Button>(R.id.buttonRotateBodyClockwise)
         btnBodyClockwise.setOnTouchListener { view, event ->
             when (event.action) {
