@@ -17,6 +17,7 @@
 
   https://docs.arduino.cc/built-in-examples/communication/SerialEvent/
 */
+#include <Servo.h>
 
 String inputString = "";      // a String to hold incoming data
 bool stringComplete = false;  // whether the string is complete
@@ -39,10 +40,16 @@ const int BACK_IN_1 = 52;
 const int BACK_IN_2 = 53;
 const int BACK_ENABLE = 5; // speed
 
+Servo bodyServo;
+int bodyPos = 0;
+
 void setup() {
   // initialize serial:
   Serial.begin(9600);
   Serial1.begin(9600);
+
+  bodyServo.attach(7);
+
   // reserve 200 bytes for the inputString:
   inputString.reserve(200);
   pinMode(LEFT_IN_1, OUTPUT);
@@ -89,11 +96,18 @@ void loop() {
      Serial.println(inputString); //this should stay as Serial because it prints to debug console
     if(inputString=="B,CW\n"){
       Serial.println("Clockwise");
+      bodyPos++;
+      bodyServo.write(180);
     }
-    else if(inputString=="B,CCW\n"){
+    if(inputString=="B,CCW\n"){
       Serial.println("CounterClockwise");
+      bodyPos--;
+      bodyServo.write(0);
     }
-    else if(inputString.startsWith("J")) {
+    if(inputString=="B,0\n"){
+      bodyServo.write(90);
+    }
+    if(inputString.startsWith("J")) {
       String data = inputString.substring(2);
       
       // Find the comma separating bx and by
@@ -182,7 +196,6 @@ void loop() {
   delay response. Multiple bytes of data may be available.
 */
 void serialEvent1() {
-  Serial.println("serialEvent1");
   while (Serial1.available()) {
     // get the new byte:
     char inChar = (char)Serial1.read();
