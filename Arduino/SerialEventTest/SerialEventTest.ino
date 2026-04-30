@@ -81,8 +81,13 @@ void setup() {
   pinMode(SHIELD_ENABLE, OUTPUT);
 
   pinMode(51, OUTPUT);
-  
   digitalWrite(51, HIGH);
+
+  pinMode(46, OUTPUT);
+  digitalWrite(46, HIGH);
+
+  pinMode(48, OUTPUT);
+  digitalWrite(48, HIGH);
 
   digitalWrite(LEFT_IN_1, LOW);  
   digitalWrite(LEFT_IN_2, LOW);  
