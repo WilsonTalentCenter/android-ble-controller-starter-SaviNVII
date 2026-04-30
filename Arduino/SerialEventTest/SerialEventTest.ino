@@ -17,7 +17,6 @@
 
   https://docs.arduino.cc/built-in-examples/communication/SerialEvent/
 */
-#include <Servo.h>
 
 String inputString = "";      // a String to hold incoming data
 bool stringComplete = false;  // whether the string is complete
@@ -40,8 +39,13 @@ const int BACK_IN_1 = 52;
 const int BACK_IN_2 = 53;
 const int BACK_ENABLE = 5; // speed
 
-Servo bodyServo;
-int bodyPos = 0;
+const int BODY_IN_1 = 28;
+const int BODY_IN_2 = 29;
+const int BODY_ENABLE = 6;
+
+const int SHIELD_IN_1 = 30;
+const int SHIELD_IN_2 = 31;
+const int SHIELD_ENABLE = 7;
 
 void setup() {
   // initialize serial:
@@ -96,16 +100,11 @@ void loop() {
      Serial.println(inputString); //this should stay as Serial because it prints to debug console
     if(inputString=="B,CW\n"){
       Serial.println("Clockwise");
-      bodyPos++;
-      bodyServo.write(180);
     }
     if(inputString=="B,CCW\n"){
       Serial.println("CounterClockwise");
-      bodyPos--;
-      bodyServo.write(0);
     }
     if(inputString=="B,0\n"){
-      bodyServo.write(90);
     }
     if(inputString.startsWith("J")) {
       String data = inputString.substring(2);
