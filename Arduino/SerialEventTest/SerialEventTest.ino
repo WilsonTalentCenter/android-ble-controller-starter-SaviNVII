@@ -72,6 +72,14 @@ void setup() {
   pinMode(BACK_IN_2, OUTPUT);
   pinMode(BACK_ENABLE, OUTPUT);
 
+  pinMode(BODY_IN_1, OUTPUT);
+  pinMode(BODY_IN_2, OUTPUT);
+  pinMode(BODY_ENABLE, OUTPUT);
+
+  pinMode(SHIELD_IN_1, OUTPUT);
+  pinMode(SHIELD_IN_2, OUTPUT);
+  pinMode(SHIELD_ENABLE, OUTPUT);
+
   pinMode(51, OUTPUT);
   
   digitalWrite(51, HIGH);
@@ -91,6 +99,14 @@ void setup() {
   digitalWrite(BACK_IN_1, LOW);  
   digitalWrite(BACK_IN_2, LOW);  
   analogWrite(BACK_ENABLE, 0); //speed is 0-255   
+
+  digitalWrite(BODY_IN_1, LOW);
+  digitalWrite(BODY_IN_2, LOW);
+  analogWrite(BODY_ENABLE, 0); //speed is 0-255
+
+  digitalWrite(SHIELD_IN_1, LOW);
+  digitalWrite(SHIELD_IN_2, LOW);
+  analogWrite(SHIELD_ENABLE, 0); //speed is 0-255
   
 }
 
