@@ -52,8 +52,6 @@ void setup() {
   Serial.begin(9600);
   Serial1.begin(9600);
 
-  bodyServo.attach(7);
-
   // reserve 200 bytes for the inputString:
   inputString.reserve(200);
   pinMode(LEFT_IN_1, OUTPUT);
@@ -121,11 +119,20 @@ void loop() {
      Serial.println(inputString); //this should stay as Serial because it prints to debug console
     if(inputString=="B,CW\n"){
       Serial.println("Clockwise");
+      digitalWrite(BODY_IN_1, LOW);
+      digitalWrite(BODY_IN_2, HIGH);
+      analogWrite(BODY_ENABLE, 255);
     }
     if(inputString=="B,CCW\n"){
       Serial.println("CounterClockwise");
+      digitalWrite(BODY_IN_1, HIGH);
+      digitalWrite(BODY_IN_2, LOW);
+      analogWrite(BODY_ENABLE, 255);
     }
     if(inputString=="B,0\n"){
+      digitalWrite(BODY_IN_1, LOW);
+      digitalWrite(BODY_IN_2, LOW);
+      analogWrite(BODY_ENABLE, 0);
     }
     if(inputString.startsWith("J")) {
       String data = inputString.substring(2);
