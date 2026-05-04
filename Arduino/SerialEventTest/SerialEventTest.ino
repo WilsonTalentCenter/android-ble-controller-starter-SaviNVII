@@ -134,6 +134,57 @@ void loop() {
       digitalWrite(BODY_IN_2, LOW);
       analogWrite(BODY_ENABLE, 0);
     }
+    if(inputString=="S,CW\n"){
+      digitalWrite(FRONT_IN_1, HIGH);
+      digitalWrite(FRONT_IN_2, LOW);
+      analogWrite(FRONT_ENABLE, 255);
+
+      digitalWrite(BACK_IN_1, LOW);
+      digitalWrite(BACK_IN_2, HIGH);
+      analogWrite(BACK_ENABLE, 255);
+
+      digitalWrite(LEFT_IN_1, LOW);
+      digitalWrite(LEFT_IN_2, HIGH);
+      analogWrite(LEFT_ENABLE, 255);
+
+      digitalWrite(RIGHT_IN_1, HIGH);
+      digitalWrite(RIGHT_IN_2, LOW);
+      analogWrite(RIGHT_ENABLE, 255);
+    }
+    if(inputString=="S,CCW\n"){
+      digitalWrite(FRONT_IN_1, LOW);
+      digitalWrite(FRONT_IN_2, HIGH);
+      analogWrite(FRONT_ENABLE, 255);
+
+      digitalWrite(BACK_IN_1, HIGH);
+      digitalWrite(BACK_IN_2, LOW);
+      analogWrite(BACK_ENABLE, 255);
+
+      digitalWrite(LEFT_IN_1, HIGH);
+      digitalWrite(LEFT_IN_2, LOW);
+      analogWrite(LEFT_ENABLE, 255);
+
+      digitalWrite(RIGHT_IN_1, LOW);
+      digitalWrite(RIGHT_IN_2, HIGH);
+      analogWrite(RIGHT_ENABLE, 255);
+    }
+    if(inputString=="S,0\n"){
+      digitalWrite(FRONT_IN_1, LOW);
+      digitalWrite(FRONT_IN_2, LOW);
+      analogWrite(FRONT_ENABLE, 255);
+
+      digitalWrite(BACK_IN_1, LOW);
+      digitalWrite(BACK_IN_2, LOW);
+      analogWrite(BACK_ENABLE, 255);
+
+      digitalWrite(LEFT_IN_1, LOW);
+      digitalWrite(LEFT_IN_2, LOW);
+      analogWrite(LEFT_ENABLE, 255);
+
+      digitalWrite(RIGHT_IN_1, LOW);
+      digitalWrite(RIGHT_IN_2, LOW);
+      analogWrite(RIGHT_ENABLE, 255);
+    }
     if(inputString.startsWith("J")) {
       String data = inputString.substring(2);
       
