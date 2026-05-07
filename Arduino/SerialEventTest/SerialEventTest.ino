@@ -54,13 +54,13 @@ void setup() {
 
   // reserve 200 bytes for the inputString:
   inputString.reserve(200);
-  pinMode(LEFT_IN_1, OUTPUT);
-  pinMode(LEFT_IN_2, OUTPUT);
-  pinMode(LEFT_ENABLE, OUTPUT);
-
   pinMode(RIGHT_IN_1, OUTPUT);
   pinMode(RIGHT_IN_2, OUTPUT);
   pinMode(RIGHT_ENABLE, OUTPUT);
+
+  pinMode(LEFT_IN_1, OUTPUT);
+  pinMode(LEFT_IN_2, OUTPUT);
+  pinMode(LEFT_ENABLE, OUTPUT);
 
   pinMode(FRONT_IN_1, OUTPUT);
   pinMode(FRONT_IN_2, OUTPUT);
@@ -199,43 +199,53 @@ void loop() {
         int by = byStr.toInt();
         Serial.println(bx + " " + by);
         
-        if(bx>0){
-          digitalWrite(FRONT_IN_1,HIGH);
-          digitalWrite(FRONT_IN_2,LOW);
-          analogWrite(FRONT_ENABLE, abs(bx)*2-1);
-
-          digitalWrite(BACK_IN_1,HIGH);
-          digitalWrite(BACK_IN_2,LOW);
-          analogWrite(BACK_ENABLE, abs(bx)*2-1);
-        }else if(bx<0){
-          digitalWrite(FRONT_IN_1,LOW);
-          digitalWrite(FRONT_IN_2,HIGH);
-          analogWrite(FRONT_ENABLE, abs(bx)*2-1);
-
-          digitalWrite(BACK_IN_1,LOW);
-          digitalWrite(BACK_IN_2,HIGH);
-          analogWrite(BACK_ENABLE, abs(bx)*2-1);
-        }
-
-        if(by>0){
+        if(bx<0){
           digitalWrite(LEFT_IN_1,HIGH);
           digitalWrite(LEFT_IN_2,LOW);
-          analogWrite(LEFT_ENABLE, abs(by)*2-1);
+          analogWrite(LEFT_ENABLE, abs(bx)*2-1);
 
           digitalWrite(RIGHT_IN_1,HIGH);
           digitalWrite(RIGHT_IN_2,LOW);
-          analogWrite(RIGHT_ENABLE, abs(by)*2-1);
-        }else if(by<0){
+          analogWrite(RIGHT_ENABLE, abs(bx)*2-1);
+        }else if(bx>0){
           digitalWrite(LEFT_IN_1,LOW);
           digitalWrite(LEFT_IN_2,HIGH);
-          analogWrite(LEFT_ENABLE, abs(by)*2-1);
+          analogWrite(LEFT_ENABLE, abs(bx)*2-1);
 
           digitalWrite(RIGHT_IN_1,LOW);
           digitalWrite(RIGHT_IN_2,HIGH);
-          analogWrite(RIGHT_ENABLE, abs(by)*2-1);
+          analogWrite(RIGHT_ENABLE, abs(bx)*2-1);
+        }
+
+        if(by>0){
+          digitalWrite(FRONT_IN_1,HIGH);
+          digitalWrite(FRONT_IN_2,LOW);
+          analogWrite(FRONT_ENABLE, abs(by)*2-1);
+
+          digitalWrite(BACK_IN_1,HIGH);
+          digitalWrite(BACK_IN_2,LOW);
+          analogWrite(BACK_ENABLE, abs(by)*2-1);
+        }else if(by<0){
+          digitalWrite(FRONT_IN_1,LOW);
+          digitalWrite(FRONT_IN_2,HIGH);
+          analogWrite(FRONT_ENABLE, abs(by)*2-1);
+
+          digitalWrite(BACK_IN_1,LOW);
+          digitalWrite(BACK_IN_2,HIGH);
+          analogWrite(BACK_ENABLE, abs(by)*2-1);
         }
 
         if(bx==0){
+          digitalWrite(RIGHT_IN_1,LOW);
+          digitalWrite(RIGHT_IN_2,LOW);
+          analogWrite(RIGHT_ENABLE, 0);
+
+          digitalWrite(LEFT_IN_1,LOW);
+          digitalWrite(LEFT_IN_2,LOW);
+          analogWrite(LEFT_ENABLE, 0);
+        }
+
+        if(by==0){
           digitalWrite(FRONT_IN_1,LOW);
           digitalWrite(FRONT_IN_2,LOW);
           analogWrite(FRONT_ENABLE, 0);
@@ -243,16 +253,6 @@ void loop() {
           digitalWrite(BACK_IN_1,LOW);
           digitalWrite(BACK_IN_2,LOW);
           analogWrite(BACK_ENABLE, 0);
-        }
-
-        if(by==0){
-          digitalWrite(LEFT_IN_1,LOW);
-          digitalWrite(LEFT_IN_2,LOW);
-          analogWrite(LEFT_ENABLE, 0);
-
-          digitalWrite(RIGHT_IN_1,LOW);
-          digitalWrite(RIGHT_IN_2,LOW);
-          analogWrite(RIGHT_ENABLE, 0);
         }
 
         Serial.print("bx: ");
